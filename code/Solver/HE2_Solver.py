@@ -699,8 +699,11 @@ class HE2_Solver():
             self.random_steps = list(np.random.uniform(0.25, 0.75, 1000))
         random_steps = self.random_steps
 
-        if it_num <= 2:
+        if it_num in [0, 2]:
             return 1
+
+        if it_num == 1:
+            return 0.01
 
         if y <= y_prev and step > 0.5:
             return step
