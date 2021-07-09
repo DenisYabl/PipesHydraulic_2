@@ -131,7 +131,7 @@ class HE2_WaterPipeSegment(abc.HE2_ABC_PipeSegment):
         return P_rez_bar, 20
 
 
-class HE2_WaterPipe(abc.HE2_ABC_Pipeline, abc.HE2_ABC_GraphEdge):
+class HE2_WaterPipe(abc.HE2_ABC_GraphEdge):
     def __init__(self, dxs, dys, diams, rghs):
         self.segments = []
         self.intermediate_results = []
@@ -268,7 +268,7 @@ class HE2_OilPipeSegment(abc.HE2_ABC_PipeSegment):
         check_for_nan(P_rez_bar = P_rez_bar, T_rez_C = T_rez_C)
         return P_rez_bar, T_rez_C
 
-class HE2_OilPipe(abc.HE2_ABC_Pipeline, abc.HE2_ABC_GraphEdge):
+class HE2_OilPipe(abc.HE2_ABC_GraphEdge):
     def __init__(self, dxs, dys, diams, rghs, fluid=None):
         self.segments = []
         self.intermediate_results = []

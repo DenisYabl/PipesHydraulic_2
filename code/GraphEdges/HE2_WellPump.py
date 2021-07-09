@@ -55,7 +55,7 @@ def create_HE2_WellPump_instance_from_dataframe(full_HPX:pd.DataFrame, model = "
     return pump
 
 
-class HE2_WellPump(abc.HE2_ABC_Pipeline, abc.HE2_ABC_GraphEdge):
+class HE2_WellPump(abc.HE2_ABC_GraphEdge):
     def __init__(self, p_vec, q_vec, n_vec, eff_vec, model = "", fluid = None, frequency = 50):
         if fluid is None:
             fluid = gimme_dummy_BlackOil()

@@ -59,14 +59,6 @@ class HE2_ABC_GraphEdge(ABC):
 class HE2_ABC_GraphVertex(ABC):
     pass
 
-class HE2_ABC_Graph(ABC):
-    pass
-
-class HE2_ABC_PipeSegment(ABC):
-    pass
-
-class HE2_ABC_Pipeline(ABC):
-    pass
 
 # TODO make oil_params checkable for nans
 fieldlist = ['sat_P_bar', 'plastT_C', 'gasFactor', 'oildensity_kg_m3', 'waterdensity_kg_m3', 'gasdensity_kg_m3',

@@ -4,7 +4,7 @@ import numpy as np
 from Tools.HE2_Logger import check_for_nan, getLogger
 logger = getLogger(__name__)
 
-class HE2_Plast(abc.HE2_ABC_Pipeline, abc.HE2_ABC_GraphEdge):
+class HE2_Plast(abc.HE2_ABC_GraphEdge):
     def __init__(self, productivity = 0, fluid=None):
         if productivity <= 0:
             raise ValueError(f'Productivity = {productivity}')
