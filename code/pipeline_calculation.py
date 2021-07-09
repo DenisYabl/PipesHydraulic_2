@@ -23,21 +23,22 @@ def main():
     coordinate_scaling = float(st.sidebar.text_input(f"Масштаб координат", '6'))
     EffD = st.sidebar.slider("Средний эффективный диаметр сети", min_value=0.01, max_value=1.0, value = 0.85, step = 0.01)
     dataset["effectiveD"] = EffD
-    with st.form("Свойства жидкости"):
-        st.write("Свойства жидкости")
-        cols = st.beta_columns(8)
-        baseproperties = [('sat_P_bar', 66.7, "Давление насыщения"), ('plastT_C', 84.0, "Пластовая температура"), ('gasFactor', 39.0, "Газовый фактор"),
-                         ('oildensity_kg_m3', 826.0, "Плотность сепарированной нефти"), ('waterdensity_kg_m3', 1015.0, "Плотность пластовой воды"),
-                         ('gasdensity_kg_m3', 1.0, "Плотность газа"), ('oilviscosity_Pa_s', 35e-3, "Вязкость нефти"),
-                         ('volumeoilcoeff', 1.015, "Объемный коэффициент")]
-        property_dict = {}
-        for i, col in enumerate(cols):
-            property = baseproperties[i]
-            property_dict.update({property[0]:col.text_input(f"{property[2]}", property[1])})
-        submitted = st.form_submit_button("Submit")
-        if submitted:
-            for key in list(property_dict.keys()):
-                dataset[key] = float(property_dict[key])
+    with st.beta_expander("Свойства жидкости"):
+        with st.form("Свойства жидкости"):
+            st.write("Свойства жидкости")
+            cols = st.beta_columns(8)
+            baseproperties = [('sat_P_bar', 66.7, "Давление насыщения"), ('plastT_C', 84.0, "Пластовая температура"), ('gasFactor', 39.0, "Газовый фактор"),
+                             ('oildensity_kg_m3', 826.0, "Плотность сепарированной нефти"), ('waterdensity_kg_m3', 1015.0, "Плотность пластовой воды"),
+                             ('gasdensity_kg_m3', 1.0, "Плотность газа"), ('oilviscosity_Pa_s', 35e-3, "Вязкость нефти"),
+                             ('volumeoilcoeff', 1.015, "Объемный коэффициент")]
+            property_dict = {}
+            for i, col in enumerate(cols):
+                property = baseproperties[i]
+                property_dict.update({property[0]:col.text_input(f"{property[2]}", property[1])})
+            submitted = st.form_submit_button("Submit")
+            if submitted:
+                for key in list(property_dict.keys()):
+                    dataset[key] = float(property_dict[key])
 
     inlets_df = dataset[dataset["startIsSource"]]
     inlets_dict = {}

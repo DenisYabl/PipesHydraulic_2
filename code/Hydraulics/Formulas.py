@@ -131,8 +131,8 @@ def count_dP_MB(mishenko, tubing, form, lambda0, dens_true, Ek, phi1, phi2, Lw, 
         Perimo = Perim - Perimg
         wo = mishenko.oil_params.volumeoilcoeff * wm / phi1
         wg = mishenko.VolumeGas_fraction * wm / phi2
-        Re1 = mishenko.SaturatedOilDensity_kg_m3 * wo * Dhg / mishenko.CurrentOilViscosity_Pa_s
-        Re2 = mishenko.CurrentFreeGasDensity_kg_m3 * wg * Dhl / mishenko.CurrentFreeGasViscosity_Pa_s
+        Re1 = mishenko.SaturatedOilDensity_kg_m3 * wo * Dhl / mishenko.CurrentOilViscosity_Pa_s
+        Re2 = mishenko.CurrentFreeGasDensity_kg_m3 * wg * Dhg / mishenko.CurrentFreeGasViscosity_Pa_s
         # Коэффициенты гидравлического сопротивления
         lambdao = 64 / Re1 if Re1 <= 2100 else 1.325 / (
             math.log(tubing["Roughness"] / (3.7 * tubing["IntDiameter"]) + 5.74 / Re1 ** 0.9)) ** 2
