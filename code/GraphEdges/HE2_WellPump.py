@@ -71,7 +71,7 @@ class HE2_WellPump(abc.HE2_ABC_Pipeline, abc.HE2_ABC_GraphEdge):
         self.state = 'on'
 
         visc_approx = self.fluid.calc(30, 20, 0).CurrentOilViscosity_Pa_s
-        vectors = self.rebuild_HPX_curves_to_viscosity(q_vec, p_vec, n_vec, eff_vec, visc_approx)
+        vectors = self.rebuild_HPX_curves_to_viscosity(q_vec, p_vec, eff_vec, visc_approx)
         self.q_vec_50hz = vectors[0]
         self.p_vec_50hz = vectors[1]
         self.eff_vec_50hz = vectors[2]
@@ -93,7 +93,7 @@ class HE2_WellPump(abc.HE2_ABC_Pipeline, abc.HE2_ABC_GraphEdge):
         self.make_extrapolators()
 
 
-    def rebuild_HPX_curves_to_viscosity(self, q_vec, p_vec, n_vec, eff_vec, viscosity_Pa_s):
+    def rebuild_HPX_curves_to_viscosity(self, q_vec, p_vec, eff_vec, viscosity_Pa_s):
         pseudo_vec = 1.95 * 0.04739 * viscosity_Pa_s**0.5 * (p_vec / 0.3048)**0.25739 * (q_vec / 0.227)**0.25
         Cq_vec = np.polyval([0.9873, 0.009019, -0.0016233, 0.00007233, -0.0000020258, 0.000000021009][::-1], pseudo_vec)
         Cp_vec = np.polyval([1.0045, -0.002664, -0.00068292, 0.000049706, -0.0000016522, 0.000000019172][::-1], pseudo_vec)
