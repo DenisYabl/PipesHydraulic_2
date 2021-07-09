@@ -53,7 +53,7 @@ class HE2_Solver():
         self.forward_edge_functions = dict()
         self.backward_edge_functions = dict()
 
-        self.fluids_move_rate = 0.1
+        self.fluids_move_rate = 0.2
         self.sources_fluids = None
         self.known_Q = dict()
         self.actual_x = None
@@ -334,7 +334,8 @@ class HE2_Solver():
         self.op_result = scop.OptimizeResult(success=y_best < threshold, fun=y_best, x=x_best, nfev=self.it_num)
         if self.op_result.success:
             self.initial_edges_x = self.edges_x.copy()
-        logger.info(f'Gradient descent result is {self.op_result}')
+        logger.info(f'Gradient descent result is {scop.OptimizeResult(success=y_best < threshold, fun=y_best, x=None, nfev=self.it_num)}')
+        logger.debug(f'Gradient descent best x is {x_best.flatten()}')
 
 
     def evaluate_derivatives_on_edges(self):
@@ -699,11 +700,11 @@ class HE2_Solver():
             self.random_steps = list(np.random.uniform(0.25, 0.75, 1000))
         random_steps = self.random_steps
 
-        if it_num in [0, 2]:
-            return 1
-
         if it_num == 1:
             return 0.01
+
+        if it_num == 2:
+            return 1
 
         if y <= y_prev and step > 0.5:
             return step
