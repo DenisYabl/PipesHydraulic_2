@@ -9,7 +9,7 @@ from Tools.HE2_Logger import check_for_nan, getLogger
 logger = getLogger(__name__)
 
 
-class HE2_WaterPipeSegment(abc.HE2_ABC_PipeSegment):
+class HE2_WaterPipeSegment():
     '''
     Чтобы не запутаться в будущем.
     PipeSegment не должен быть ребром графа и не обязан поддерживать интерфейс HE2_ABC_GraphEdge
@@ -171,7 +171,7 @@ class HE2_WaterPipe(abc.HE2_ABC_GraphEdge):
 
 
 
-class HE2_OilPipeSegment(abc.HE2_ABC_PipeSegment):
+class HE2_OilPipeSegment():
     '''
     Аналог HE2_WaterPipeSegment с реюзом Mishenko и Mukherjee_Brill
     '''
